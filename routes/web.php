@@ -21,4 +21,8 @@ Route::get('profile/edit','Admin\ProfileController@edit');
 });
 //課題9
 Route::get('XXX','AAAController@bbb');
+Route::get(['prefix' => 'profile'], function(){
+Route::get('create','ProfileController@add');
+Route::get('edit','ProfileController@edit');
+});
 

@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 
 class NewController extends Controller
 {
-    //
     public function add()
     {
         return view('admin.news.create');
