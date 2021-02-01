@@ -17,12 +17,19 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function(){
     Route::get('news/create', 'Admin\NewController@add');
     Route::get('profile/create','Admin\ProfileController@add');
-Route::get('profile/edit','Admin\ProfileController@edit');
+    Route::get('profile/edit','Admin\ProfileController@edit');
 });
 //課題9
 Route::get('XXX','AAAController@bbb');
-Route::get(['prefix' => 'profile'], function(){
-Route::get('create','ProfileController@add');
-Route::get('edit','ProfileController@edit');
+Route::group(['prefix' => 'profile'], function(){
+  Route::get('create','Admin\ProfileController@add');
+  Route::get('edit','Admin\ProfileController@edit');
+});
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
