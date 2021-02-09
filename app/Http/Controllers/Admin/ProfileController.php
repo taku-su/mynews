@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\ProfileHistory;
+use Carbon\Carbon;
+
 
 class ProfileController extends Controller
 {
@@ -50,6 +53,10 @@ class ProfileController extends Controller
         $news_form = $request->all();
     unset($form['_token']);
     $news->fill($news_form)->save();
+     $history = new ProfileHistory;
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
     return redirect('admin/profile/create');
     }
 }
