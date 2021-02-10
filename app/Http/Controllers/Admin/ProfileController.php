@@ -51,7 +51,7 @@ class ProfileController extends Controller
         $this->validate($request,Profile::$rules);
         $news = Profile::find($request->id);
         $news_form = $request->all();
-        //unset($form['_token']);
+        unset($news_form['_token']);
      $news->fill($news_form)->save();
      $history = new ProfileHistory;
         $history->news_id = $news->id;
